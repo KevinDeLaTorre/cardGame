@@ -11,9 +11,10 @@ class Card
 		std::string Description;
 
 	public:
+		Card();
 		Card( std::string Name, std::string Description );
 
-		std::string toString() {
+		std::string str() {
 			std::string card = "**************";
 			card += "\n*            *";
 			card += "\n*            *";
@@ -23,9 +24,12 @@ class Card
 			card += "\n*            *";
 			return card;
 		}
+
+		std::string getName() const;
+		std::string getDescription() const;
 		
 		std::ostream& operator<< (Card& obj) {
-			return std::cout << obj.toString();
+			return std::cout << obj.str();
 		}
 
 };
