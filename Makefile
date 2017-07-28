@@ -5,9 +5,10 @@ EXNAME = CardGame
 EXCLASS = Launcher
 CARDCLASS = Card
 GAMECLASS = Game
+PLAYERCLASS = Player
 TESTCLASS = Tester
 
-TESTDEPENDENCIES = $(GAMECLASS).o $(CARDCLASS).o
+TESTDEPENDENCIES = $(GAMECLASS).o $(CARDCLASS).o $(PLAYERCLASS).o
 EXDEPENDENCIES = $(TESTDEPENDENCIES) $(EXCLASS).o
 
 $(EXNAME) : $(EXDEPENDENCIES)
@@ -21,6 +22,11 @@ $(EXCLASS).o : $(EXCLASS).cpp
 $(CARDCLASS).o : $(CARDCLASS).cpp $(CARDCLASS).h
 	@echo -n Compiling \"$(CARDCLASS)\"...
 	@g++ -std=c++11 -c $(CARDCLASS).cpp
+	@echo done
+
+$(PLAYERCLASS).o : $(PLAYERCLASS).cpp $(PLAYERCLASS).h
+	@echo -n Compiling \"$(PLAYERCLASS)\"...
+	@g++ -std=c++11 -c $(PLAYERCLASS).cpp
 	@echo done
 
 $(GAMECLASS).o : $(GAMECLASS).cpp $(GAMECLASS).h
@@ -38,5 +44,5 @@ test : $(TESTCLASS).o $(TESTDEPENDENCIES)
 
 clean :
 	@echo -n Cleaning...
-	@rm -rf $(EXDEPENDENCIES) $(EXNAME)*
+	@rm -rf $(EXDEPENDENCIES) $(TESTCLASS).exe $(TESTCLASS).o $(EXNAME).exe
 	@echo done

@@ -15,13 +15,7 @@ class Card
 		Card( std::string Name, std::string Description );
 
 		std::string str() {
-			std::string card = "**************";
-			card += "\n*            *";
-			card += "\n*            *";
-			card += "\n*" + Name + "*";
-			card += "\n*            *";
-			card += "\n*            *";
-			card += "\n*            *";
+			std::string card = "Name: " + Name + "\nDescription: " + Description;
 			return card;
 		}
 
