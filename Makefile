@@ -6,9 +6,13 @@ EXCLASS = Launcher
 CARDCLASS = Card
 GAMECLASS = Game
 PLAYERCLASS = Player
+GRAPHICSCLASS = Graphics
+BOARDCLASS = Board
 TESTCLASS = Tester
 
-TESTDEPENDENCIES = $(GAMECLASS).o $(CARDCLASS).o $(PLAYERCLASS).o
+# Tried to categorize the dependencies up a bit
+GRAPHICSDEPENDENCIES = $(GRAPHICSCLASS).o $(BOARDCLASS).o
+TESTDEPENDENCIES = $(GAMECLASS).o $(CARDCLASS).o $(PLAYERCLASS).o $(GRAPHICSDEPENDENCIES)
 EXDEPENDENCIES = $(TESTDEPENDENCIES) $(EXCLASS).o
 
 $(EXNAME) : $(EXDEPENDENCIES)
@@ -32,6 +36,16 @@ $(PLAYERCLASS).o : $(PLAYERCLASS).cpp $(PLAYERCLASS).h
 $(GAMECLASS).o : $(GAMECLASS).cpp $(GAMECLASS).h
 	@echo -n Compiling \"$(GAMECLASS)\"...
 	@g++ -std=c++11 -c $(GAMECLASS).cpp
+	@echo done
+
+$(GRAPHICSCLASS).o : $(GRAPHICSCLASS).cpp $(GRAPHICSCLASS).h
+	@echo -n Compiling \"$(GRAPHICSCLASS)\"...
+	@g++ -std=c++11 -c $(GRAPHICSCLASS).cpp
+	@echo done
+
+$(BOARDCLASS).o : $(BOARDCLASS).cpp $(BOARDCLASS).h
+	@echo -n Compiling \"$(BOARDCLASS)\"...
+	@g++ -std=c++11 -c $(BOARDCLASS).cpp
 	@echo done
 
 $(TESTCLASS).o : $(TESTCLASS).cpp

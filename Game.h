@@ -5,6 +5,8 @@
 #include <iostream>
 
 #include "Card.h"
+#include "Player.h"
+#include "Graphics.h"
 
 class Game
 {
